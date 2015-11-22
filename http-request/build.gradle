@@ -11,10 +11,10 @@ ext {
 
     libraryDescription = 'A minimal Android library to simplify http requests.'
 
-    siteUrl = 'https://github.com/erf/http-request'
-    gitUrl = 'https://github.com/erf/http-request.git'
+    siteUrl = 'https://github.com/erf/http-request-task'
+    gitUrl = 'https://github.com/erf/http-request-task.git'
 
-    libraryVersion = '0.0.6'
+    libraryVersion = '0.0.7'
 
     developerId = 'erf'
     developerName = 'Erlend Fagerheim'
@@ -32,8 +32,8 @@ android {
     defaultConfig {
         minSdkVersion 8
         targetSdkVersion 23
-        versionCode 6
-        versionName "0.0.6"
+        versionCode 7
+        versionName "0.0.7"
     }
     buildTypes {
         release {
