@@ -16,7 +16,7 @@ public class HttpRequestTask extends AsyncTask<Void, Void, HttpResponse> {
     private OnProgress onProgress;
     private OnTaskCompleted callback;
 
-    HttpRequestTask(HttpRequest httpRequest, HttpRequestTask.OnProgress onProgress, OnTaskCompleted callback) {
+    public HttpRequestTask(HttpRequest httpRequest, HttpRequestTask.OnProgress onProgress, OnTaskCompleted callback) {
         this.httpRequest = httpRequest;
         this.onProgress = onProgress;
         this.callback = callback;
