@@ -24,13 +24,13 @@ public class HttpRequest {
     private final String url;
     private final String method;
     private final String json;
-    private Map<String, String> requestProperies;
+    private Map<String, String> requestProperties;
 
-    public HttpRequest(String url, String method, String json, Map<String, String> requestProperies) {
+    public HttpRequest(String url, String method, String json, Map<String, String> requestProperties) {
         this.url = url;
         this.method = method;
         this.json = json;
-        this.requestProperies = requestProperies;
+        this.requestProperties = requestProperties;
     }
 
     public static void write(OutputStream os, String body) throws IOException {
@@ -70,8 +70,8 @@ public class HttpRequest {
                 con.setRequestMethod(method);
             }
 
-            if(requestProperies != null) {
-                for (Map.Entry<String, String> entry : requestProperies.entrySet()) {
+            if(requestProperties != null) {
+                for (Map.Entry<String, String> entry : requestProperties.entrySet()) {
                     con.setRequestProperty(entry.getKey(), entry.getValue());
                 }
             }
