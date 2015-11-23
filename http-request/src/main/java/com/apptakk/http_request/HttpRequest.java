@@ -1,12 +1,6 @@
 package com.apptakk.http_request;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
@@ -41,25 +35,6 @@ public class HttpRequest {
         this.requestProperties = requestProperties;
     }
 
-    public static void write(OutputStream os, String body) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-        writer.write(body);
-        writer.flush();
-        writer.close();
-        os.close();
-    }
-
-    public static String read(InputStream in) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(in, "UTF-8"));
-        StringBuilder sb = new StringBuilder();
-        String line;
-        while ((line = br.readLine()) != null) {
-            sb.append(line);
-        }
-        br.close();
-        return sb.toString();
-    }
-
     public HttpResponse request()  {
 
         HttpResponse httpResponse = new HttpResponse();
@@ -90,11 +65,11 @@ public class HttpRequest {
                 con.setRequestProperty("Content-Type", "application/json");
                 con.setRequestProperty("Content-Length", "" + json.length());
                 con.setRequestProperty("Accept", "application/json");
-                write(con.getOutputStream(), json);
+                IO.write(con.getOutputStream(), json);
             }
 
             httpResponse.code = con.getResponseCode();
-            httpResponse.body = read(con.getInputStream());
+            httpResponse.body = IO.read(con.getInputStream());
 
         } catch (IOException e) {
             e.printStackTrace();
