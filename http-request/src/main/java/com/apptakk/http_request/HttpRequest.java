@@ -24,7 +24,21 @@ public class HttpRequest {
     private final String url;
     private final String method;
     private final String json;
-    private Map<String, String> requestProperties;
+    private final Map<String, String> requestProperties;
+
+    public HttpRequest(String url, String method) {
+        this.url = url;
+        this.method = method;
+        this.json = null;
+        this.requestProperties = null;
+    }
+
+    public HttpRequest(String url, String method, String json) {
+        this.url = url;
+        this.method = method;
+        this.json = json;
+        this.requestProperties = null;
+    }
 
     public HttpRequest(String url, String method, String json, Map<String, String> requestProperties) {
         this.url = url;

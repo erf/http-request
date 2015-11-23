@@ -8,24 +8,20 @@ repositories {
     maven { url "http://dl.bintray.com/erf/maven" }
 }
 
-compile 'com.apptakk.http_request:http-request:0.0.9'
+compile 'com.apptakk.http_request:http-request:0.0.10'
 ```
 
 # Usage
 See app example or do
 ```
-    String url = "http://httpbin.org/ip";
-    new HttpRequestTask(new HttpRequest(url, HttpRequest.GET, null, null),
-            new HttpRequestTask.OnTaskCompleted() {
+    new HttpRequestTask(new HttpRequest("http://httpbin.org/ip", HttpRequest.GET),
+            new ITaskComplete() {
                 @Override
-                public void onTaskCompleted(HttpResponse response) {
-                    TextView textView = (TextView) findViewById(R.id.text);
-                    if(response.code==200) {
+                public void handle(HttpResponse response) {
+                    if (response.code == 200) {
                         textView.setText(response.body);
-                    } else {
-                        textView.setText("Request error");
                     }
                 }
-            }, null).execute();
+            }).execute();
 ```
 

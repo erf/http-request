@@ -7,27 +7,26 @@ import android.widget.TextView;
 import com.apptakk.http_request.HttpRequest;
 import com.apptakk.http_request.HttpRequestTask;
 import com.apptakk.http_request.HttpResponse;
+import com.apptakk.http_request.ITaskComplete;
 
 public class MainActivity extends AppCompatActivity {
+
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        textView = (TextView) findViewById(R.id.text);
 
-        String url = "http://httpbin.org/user-agent";
-        new HttpRequestTask(new HttpRequest(url, HttpRequest.GET, null, null),
-                new HttpRequestTask.OnTaskCompleted() {
+        new HttpRequestTask(new HttpRequest("http://httpbin.org/ip", HttpRequest.GET),
+                new ITaskComplete() {
                     @Override
-                    public void onTaskCompleted(HttpResponse response) {
-                        TextView textView = (TextView) findViewById(R.id.text);
-                        if(response.code==200) {
+                    public void handle(HttpResponse response) {
+                        if (response.code == 200) {
                             textView.setText(response.body);
-                        } else {
-                            textView.setText("Request error");
                         }
                     }
-                }, null).execute();
-
+                }).execute();
     }
 }
