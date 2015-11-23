@@ -19,15 +19,18 @@ compile 'com.apptakk.http_request:http-request:0.0.7'
 # Example
 See app example or copy code below
 ```
-String url = "https://httpbin.org/user-agent";
-new HttpRequestTask(new HttpRequest(url, HttpRequest.GET, null, null),
-                null,
-                new HttpRequestTask.OnTaskCompleted() {
-            @Override
-            public void onTaskCompleted(HttpResponse response) {
-                TextView textView = (TextView) findViewById(R.id.hello);
-                textView.setText(response.body);
-            }
-        }).execute();
+    String url = "http://httpbin.org/ip";
+    new HttpRequestTask(new HttpRequest(url, HttpRequest.GET, null, null),
+            new HttpRequestTask.OnTaskCompleted() {
+                @Override
+                public void onTaskCompleted(HttpResponse response) {
+                    TextView textView = (TextView) findViewById(R.id.text);
+                    if(response.code==200) {
+                        textView.setText(response.body);
+                    } else {
+                        textView.setText("Request error");
+                    }
+                }
+            }, null).execute();
 ```
 

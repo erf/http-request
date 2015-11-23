@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Map;
 
 public class HttpRequest {
 
@@ -23,13 +24,13 @@ public class HttpRequest {
     private final String url;
     private final String method;
     private final String json;
-    private final String auth;
+    private Map<String, String> requestProperies;
 
-    public HttpRequest(String url, String method, String json, String auth) {
+    public HttpRequest(String url, String method, String json, Map<String, String> requestProperies) {
         this.url = url;
         this.method = method;
         this.json = json;
-        this.auth = auth;
+        this.requestProperies = requestProperies;
     }
 
     public static void write(OutputStream os, String body) throws IOException {
@@ -69,8 +70,10 @@ public class HttpRequest {
                 con.setRequestMethod(method);
             }
 
-            if(auth != null){
-                con.setRequestProperty("Authorization", auth);
+            if(requestProperies != null) {
+                for (Map.Entry<String, String> entry : requestProperies.entrySet()) {
+                    con.setRequestProperty(entry.getKey(), entry.getValue());
+                }
             }
 
             if(json != null){
