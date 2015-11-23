@@ -12,7 +12,7 @@ compile 'com.apptakk.http_request:http-request:0.0.10'
 ```
 
 # Usage
-Just do
+Do
 ```
     new HttpRequestTask(
             new HttpRequest("http://httpbin.org/ip", HttpRequest.GET),
