@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String url = "http://httpbin.org/ip";
+        String url = "http://httpbin.org/user-agent";
         new HttpRequestTask(new HttpRequest(url, HttpRequest.GET, null, null),
                 new HttpRequestTask.OnTaskCompleted() {
                     @Override
