@@ -19,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         textView = (TextView) findViewById(R.id.text);
 
-        new HttpRequestTask(new HttpRequest("http://httpbin.org/ip", HttpRequest.GET),
+        new HttpRequestTask(
+                new HttpRequest("http://httpbin.org/ip", HttpRequest.GET),
                 new ITaskComplete() {
                     @Override
                     public void handle(HttpResponse response) {

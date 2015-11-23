@@ -14,7 +14,8 @@ compile 'com.apptakk.http_request:http-request:0.0.10'
 # Usage
 See app example or do
 ```
-    new HttpRequestTask(new HttpRequest("http://httpbin.org/ip", HttpRequest.GET),
+    new HttpRequestTask(
+            new HttpRequest("http://httpbin.org/ip", HttpRequest.GET),
             new ITaskComplete() {
                 @Override
                 public void handle(HttpResponse response) {
