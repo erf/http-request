@@ -8,7 +8,7 @@ repositories {
     maven { url "http://dl.bintray.com/erf/maven" }
 }
 
-compile 'com.apptakk.http_request:http-request:0.0.10'
+compile 'com.apptakk.http_request:http-request:0.0.11'
 ```
 
 # Usage

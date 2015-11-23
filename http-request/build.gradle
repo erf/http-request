@@ -14,7 +14,7 @@ ext {
     siteUrl = 'https://github.com/erf/http-request'
     gitUrl = 'https://github.com/erf/http-request.git'
 
-    libraryVersion = '0.0.10'
+    libraryVersion = '0.0.11'
 
     developerId = 'erf'
     developerName = 'Erlend Fagerheim'
@@ -32,8 +32,8 @@ android {
     defaultConfig {
         minSdkVersion 8
         targetSdkVersion 23
-        versionCode 10
-        versionName "0.0.10"
+        versionCode 11
+        versionName "0.0.11"
     }
     buildTypes {
         release {
