@@ -13,7 +13,7 @@ repositories {
 
 Add gradle dependency
 ```
-compile 'com.apptakk.http_request:http-request:0.0.7'
+compile 'com.apptakk.http_request:http-request:0.0.8'
 ```
 
 # Example
