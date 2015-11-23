@@ -4,8 +4,8 @@ import android.os.AsyncTask;
 
 public class HttpRequestTask extends AsyncTask<Void, Void, HttpResponse> {
 
-    private HttpRequest httpRequest;
-    private ITaskComplete taskComplete;
+    private final HttpRequest httpRequest;
+    private final ITaskComplete taskComplete;
 
     public HttpRequestTask(HttpRequest httpRequest, ITaskComplete taskComplete) {
         this.httpRequest = httpRequest;
