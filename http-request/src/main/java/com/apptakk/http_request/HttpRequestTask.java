@@ -13,12 +13,12 @@ public class HttpRequestTask extends AsyncTask<Void, Void, HttpResponse> {
     }
 
     private HttpRequest httpRequest;
-    private OnTaskCompleted callback;
+    private OnTaskCompleted onTaskCompleted;
     private OnProgress onProgress;
 
-    public HttpRequestTask(HttpRequest httpRequest, OnTaskCompleted callback, OnProgress onProgress) {
+    public HttpRequestTask(HttpRequest httpRequest, OnTaskCompleted onTaskCompleted, OnProgress onProgress) {
         this.httpRequest = httpRequest;
-        this.callback = callback;
+        this.onTaskCompleted = onTaskCompleted;
         this.onProgress = onProgress;
     }
 
@@ -39,8 +39,8 @@ public class HttpRequestTask extends AsyncTask<Void, Void, HttpResponse> {
         if(onProgress != null)
             onProgress.showProgress(false);
 
-        if(callback != null)
-            callback.onTaskCompleted(response);
+        if(onTaskCompleted != null)
+            onTaskCompleted.onTaskCompleted(response);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class HttpRequestTask extends AsyncTask<Void, Void, HttpResponse> {
         if(onProgress != null)
             onProgress.showProgress(false);
 
-        if(callback != null)
-            callback.onTaskCompleted(new HttpResponse());
+        if(onTaskCompleted != null)
+            onTaskCompleted.onTaskCompleted(new HttpResponse());
     }
 }
