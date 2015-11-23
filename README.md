@@ -1,16 +1,6 @@
 # http-request
 A minimal Android library for http requests.
 
-# Install
-Use Gradle
-```
-repositories {
-    maven { url "http://dl.bintray.com/erf/maven" }
-}
-
-compile 'com.apptakk.http_request:http-request:0.0.11'
-```
-
 # Usage
 Do
 ```
@@ -26,3 +16,12 @@ Do
             }).execute();
 ```
 
+# Install
+Use Gradle
+```
+repositories {
+    maven { url "http://dl.bintray.com/erf/maven" }
+}
+
+compile 'com.apptakk.http_request:http-request:0.0.11'
+```
