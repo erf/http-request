@@ -37,14 +37,14 @@ public class HttpRequest {
 
     public HttpResponse request()  {
 
-        HttpResponse httpResponse = new HttpResponse();
+        HttpResponse response = new HttpResponse();
 
         HttpURLConnection con;
         try {
             con = (HttpURLConnection) new URL(url).openConnection();
         } catch (IOException e) {
             e.printStackTrace();
-            return httpResponse;
+            return response;
         }
 
         try {
@@ -68,14 +68,14 @@ public class HttpRequest {
                 IO.write(con.getOutputStream(), json);
             }
 
-            httpResponse.code = con.getResponseCode();
-            httpResponse.body = IO.read(con.getInputStream());
+            response.code = con.getResponseCode();
+            response.body = IO.read(con.getInputStream());
 
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             con.disconnect();
         }
-        return httpResponse;
+        return response;
     }
 }
