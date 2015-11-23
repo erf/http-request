@@ -2,7 +2,6 @@
 A minimal Android library for http requests.
 
 # Usage
-Do
 ```
     new HttpRequestTask(
             new HttpRequest("http://httpbin.org/ip", HttpRequest.GET),
@@ -17,7 +16,6 @@ Do
 ```
 
 # Install
-Use Gradle
 ```
 repositories {
     maven { url "http://dl.bintray.com/erf/maven" }
