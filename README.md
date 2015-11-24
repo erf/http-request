@@ -20,8 +20,7 @@ new HttpRequestTask(
 #### `POST` example
 ```
 new HttpRequestTask(
-        new HttpRequest("http://httpbin.org/post", HttpRequest.POST,
-                "{ \"post\": \"some-data\" }" ),
+        new HttpRequest("http://httpbin.org/post", HttpRequest.POST, "{ \"post\": \"some-data\" }" ),
         new ITaskComplete() {
             @Override
             public void handle(HttpResponse response) {
