@@ -9,6 +9,8 @@ import com.apptakk.http_request.HttpRequestTask;
 import com.apptakk.http_request.HttpResponse;
 import com.apptakk.http_request.ITaskComplete;
 
+import org.json.JSONObject;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView textView;
@@ -20,7 +22,19 @@ public class MainActivity extends AppCompatActivity {
         textView = (TextView) findViewById(R.id.text);
 
         new HttpRequestTask(
-                new HttpRequest("http://httpbin.org/ip", HttpRequest.GET),
+                new HttpRequest("http://httpbin.org/get", HttpRequest.GET),
+                new ITaskComplete() {
+                    @Override
+                    public void handle(HttpResponse response) {
+                        if (response.code == 200) {
+                            textView.setText(response.body);
+                        }
+                    }
+                }).execute();
+
+        new HttpRequestTask(
+                new HttpRequest("http://httpbin.org/post", HttpRequest.POST,
+                        "{ \"post\": \"some-data\" }" ),
                 new ITaskComplete() {
                     @Override
                     public void handle(HttpResponse response) {

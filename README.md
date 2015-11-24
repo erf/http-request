@@ -1,8 +1,9 @@
-# http-request
-A minimal Android library for http requests.
+http-request
+------------
+A minimal Android library for http requests
 
 # Usage
-See example or do this
+#### `GET` example
 ```
 new HttpRequestTask(
     new HttpRequest("http://httpbin.org/user-agent", HttpRequest.GET),
@@ -14,6 +15,21 @@ new HttpRequestTask(
             }
         }
     }).execute();
+```
+
+#### `POST` example
+```
+new HttpRequestTask(
+        new HttpRequest("http://httpbin.org/post", HttpRequest.POST,
+                "{ \"post\": \"some-data\" }" ),
+        new ITaskComplete() {
+            @Override
+            public void handle(HttpResponse response) {
+                if (response.code == 200) {
+                    textView.setText(response.body);
+                }
+            }
+        }).execute();
 ```
 
 # Install
