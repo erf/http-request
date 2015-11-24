@@ -6,7 +6,7 @@ A minimal Android library for http requests
 #### `GET` example
 ```
 new HttpRequestTask(
-    new HttpRequest("http://httpbin.org/user-agent", HttpRequest.GET),
+    new HttpRequest("http://httpbin.org/get", HttpRequest.GET),
     new ITaskComplete() {
         @Override
         public void handle(HttpResponse response) {
