@@ -1,24 +1,14 @@
 http-request
-------------
+============
+
 A minimal Android library for http requests
 
-# Usage
-#### `GET` example
-```
-new HttpRequestTask(
-    new HttpRequest("http://httpbin.org/get", HttpRequest.GET),
-    new ITaskComplete() {
-        @Override
-        public void handle(HttpResponse response) {
-            if (response.code == 200) {
-                textView.setText(response.body);
-            }
-        }
-    }).execute();
-```
+**Supported Android versions**: Android 1+
 
-#### `POST` example
-```
+# Usage
+
+`POST` example
+```java
 new HttpRequestTask(
         new HttpRequest("http://httpbin.org/post", HttpRequest.POST, "{ \"post\": \"some-data\" }" ),
         new ITaskComplete() {
@@ -32,11 +22,6 @@ new HttpRequestTask(
 ```
 
 # Install
-Use Gradle
-```
-repositories {
-    jcenter()
-}
-
+```groovy
 compile 'com.apptakk.http_request:http-request:0.0.11'
 ```
