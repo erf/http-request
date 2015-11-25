@@ -1,7 +1,7 @@
 http-request
 ============
 
-A minimal Android library for http requests
+A minimal http request library for Android
 
 **Supported Android versions**: Android 1+
 
