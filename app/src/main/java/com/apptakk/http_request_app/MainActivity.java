@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         new HttpRequestTask(
                 new HttpRequest("http://httpbin.org/post", HttpRequest.POST,
-                        "{ \"post\": \"some-data\" }" ),
+                        "{ \"post\": \"some-data-æøå\" }" ),
                 new ITaskComplete() {
                     @Override
                     public void handle(HttpResponse response) {

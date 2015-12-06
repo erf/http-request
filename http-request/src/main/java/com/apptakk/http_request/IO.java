@@ -21,6 +21,10 @@ public class IO {
         os.close();
     }
 
+    public static void write(OutputStream os, byte[] body) throws IOException {
+        os.write(body);
+        os.close();
+    }
     public static String read(InputStream in) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(in, "UTF-8"));
         StringBuilder sb = new StringBuilder();

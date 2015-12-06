@@ -62,10 +62,13 @@ public class HttpRequest {
             if(json != null){
                 con.setDoOutput(true);
                 con.setChunkedStreamingMode(0);
-                con.setRequestProperty("Content-Type", "application/json");
-                con.setRequestProperty("Content-Length", "" + json.length());
+
+                final byte[] bytes = json.getBytes("UTF-8");
+                con.setRequestProperty("Content-Type", "application/json; charset=utf-8");
                 con.setRequestProperty("Accept", "application/json");
-                IO.write(con.getOutputStream(), json);
+                con.setRequestProperty("Content-Length", "" + bytes.length);
+
+                IO.write(con.getOutputStream(), bytes);
             }
 
             response.code = con.getResponseCode();
