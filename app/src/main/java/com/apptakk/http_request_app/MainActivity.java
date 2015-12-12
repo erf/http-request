@@ -2,6 +2,7 @@ package com.apptakk.http_request_app;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.apptakk.http_request.HttpRequest;
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         textView = (TextView) findViewById(R.id.text);
 
+        Log.d("http-request", "sending request");
         final String[] text = {""};
 
         new HttpRequestTask(
@@ -42,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
                             textView.setText(text[0]);
                         }
                     }
-                }).execute();
+                }, this).execute();
+
+        finish();
     }
 }
