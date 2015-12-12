@@ -10,7 +10,7 @@ A minimal http request library for Android
 `POST` example
 ```java
 new HttpRequestTask(
-        new HttpRequest("http://httpbin.org/post", HttpRequest.POST, "{ \"post\": \"some-data-æøå\" }" ),
+        new HttpRequest("http://httpbin.org/post", HttpRequest.POST, "{ \"some\": \"data-æøå\" }" ),
         new HttpRequest.Handler() {
             @Override
             public void response(HttpResponse response) {
