@@ -7,9 +7,6 @@ import android.widget.TextView;
 import com.apptakk.http_request.HttpRequest;
 import com.apptakk.http_request.HttpRequestTask;
 import com.apptakk.http_request.HttpResponse;
-import com.apptakk.http_request.ITaskComplete;
-
-import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,25 +18,28 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         textView = (TextView) findViewById(R.id.text);
 
+        final String[] text = {""};
+
         new HttpRequestTask(
                 new HttpRequest("http://httpbin.org/get", HttpRequest.GET),
-                new ITaskComplete() {
+                new HttpRequest.Handler() {
                     @Override
-                    public void handle(HttpResponse response) {
+                    public void response(HttpResponse response) {
                         if (response.code == 200) {
-                            textView.setText(response.body);
+                            text[0] += "HTTP GET -> http://httpbin.org/get\n" + response.body + "\n\n";
+                            textView.setText(text[0]);
                         }
                     }
                 }).execute();
 
         new HttpRequestTask(
-                new HttpRequest("http://httpbin.org/post", HttpRequest.POST,
-                        "{ \"post\": \"some-data-æøå\" }" ),
-                new ITaskComplete() {
+                new HttpRequest("http://httpbin.org/post", HttpRequest.POST, "{ \"post\": \"some-data-æøå\" }" ),
+                new HttpRequest.Handler() {
                     @Override
-                    public void handle(HttpResponse response) {
+                    public void response(HttpResponse response) {
                         if (response.code == 200) {
-                            textView.setText(response.body);
+                            text[0] += "HTTP POST -> http://httpbin.org/post\n" + response.body + "\n\n";
+                            textView.setText(text[0]);
                         }
                     }
                 }).execute();

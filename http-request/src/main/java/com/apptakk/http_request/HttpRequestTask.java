@@ -5,11 +5,11 @@ import android.os.AsyncTask;
 public class HttpRequestTask extends AsyncTask<Void, Void, HttpResponse> {
 
     private final HttpRequest httpRequest;
-    private final ITaskComplete taskComplete;
+    private final HttpRequest.Handler handler;
 
-    public HttpRequestTask(HttpRequest httpRequest, ITaskComplete taskComplete) {
+    public HttpRequestTask(HttpRequest httpRequest, HttpRequest.Handler taskComplete) {
         this.httpRequest = httpRequest;
-        this.taskComplete = taskComplete;
+        this.handler = taskComplete;
     }
 
     @Override
@@ -19,13 +19,13 @@ public class HttpRequestTask extends AsyncTask<Void, Void, HttpResponse> {
 
     @Override
     protected void onPostExecute(final HttpResponse response) {
-        if(taskComplete != null)
-            taskComplete.handle(response);
+        if(handler != null)
+            handler.response(response);
     }
 
     @Override
     protected void onCancelled() {
-        if(taskComplete != null)
-            taskComplete.handle(new HttpResponse());
+        if(handler != null)
+            handler.response(new HttpResponse());
     }
 }

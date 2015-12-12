@@ -7,6 +7,10 @@ import java.util.Map;
 
 public class HttpRequest {
 
+    public interface Handler {
+        void response(HttpResponse response);
+    }
+
     public final static String OPTIONS = "OPTIONS";
     public final static String GET = "GET";
     public final static String HEAD = "HEAD";
