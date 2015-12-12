@@ -15,7 +15,7 @@ new HttpRequestTask(
             @Override
             public void response(HttpResponse response) {
                 if (response.code == 200) {
-                    textView.setText("HTTP POST -> http://httpbin.org/post\n" + response.body + "\n\n";);
+                    textView.setText(response.body);
                 }
             }
         }).execute();
