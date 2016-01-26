@@ -1,9 +1,12 @@
 package com.apptakk.http_request;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Map;
 
 public class HttpRequest {
 
@@ -22,7 +25,7 @@ public class HttpRequest {
     private final String url;
     private final String method;
     private final String json;
-    private final Map<String, String> requestProperties;
+    private final String authorization;
 
     public HttpRequest(String url, String method) {
         this(url, method, null, null);
@@ -32,11 +35,11 @@ public class HttpRequest {
         this(url, method, json, null);
     }
 
-    public HttpRequest(String url, String method, String json, Map<String, String> requestProperties) {
+    public HttpRequest(String url, String method, String json, String authorization) {
         this.url = url;
         this.method = method;
         this.json = json;
-        this.requestProperties = requestProperties;
+        this.authorization = authorization;
     }
 
     public HttpResponse request()  {
@@ -57,10 +60,8 @@ public class HttpRequest {
                 con.setRequestMethod(method);
             }
 
-            if(requestProperties != null) {
-                for (Map.Entry<String, String> entry : requestProperties.entrySet()) {
-                    con.setRequestProperty(entry.getKey(), entry.getValue());
-                }
+            if(authorization != null) {
+                con.setRequestProperty("Authorization", this.authorization);
             }
 
             if(json != null){
@@ -72,11 +73,11 @@ public class HttpRequest {
                 con.setRequestProperty("Accept", "application/json");
                 con.setRequestProperty("Content-Length", "" + bytes.length);
 
-                IO.write(con.getOutputStream(), bytes);
+                write(con.getOutputStream(), bytes);
             }
 
             response.code = con.getResponseCode();
-            response.body = IO.read(con.getInputStream());
+            response.body = read(con.getInputStream());
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -84,5 +85,21 @@ public class HttpRequest {
             con.disconnect();
         }
         return response;
+    }
+
+    private void write(OutputStream os, byte[] body) throws IOException {
+        os.write(body);
+        os.close();
+    }
+
+    private String read(InputStream in) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(in, "UTF-8"));
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = br.readLine()) != null) {
+            sb.append(line);
+        }
+        br.close();
+        return sb.toString();
     }
 }
