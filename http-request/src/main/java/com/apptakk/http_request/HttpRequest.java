@@ -63,7 +63,6 @@ public class HttpRequest {
 
             if(json != null){
                 con.setDoOutput(true);
-                con.setChunkedStreamingMode(0);
 
                 final byte[] bytes = json.getBytes("UTF-8");
                 con.setRequestProperty("Content-Type", "application/json; charset=utf-8");
