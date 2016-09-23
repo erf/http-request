@@ -47,19 +47,17 @@ public class HttpRequest {
         try {
             con = (HttpURLConnection) new URL(url).openConnection();
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             return response;
         }
 
         try {
 
-            if(method != null){
+            if(method != null)
                 con.setRequestMethod(method);
-            }
 
-            if(authorization != null) {
+            if(authorization != null)
                 con.setRequestProperty("Authorization", this.authorization);
-            }
 
             if(json != null){
                 con.setDoOutput(true);
@@ -76,7 +74,7 @@ public class HttpRequest {
             response.body = IO.read(con.getInputStream());
 
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             con.disconnect();
         }
