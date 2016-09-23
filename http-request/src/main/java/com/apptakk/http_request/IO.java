@@ -20,9 +20,8 @@ public class IO {
         BufferedReader br = new BufferedReader(new InputStreamReader(in, "UTF-8"));
         StringBuilder sb = new StringBuilder();
         String line;
-        while ((line = br.readLine()) != null) {
+        while ((line = br.readLine()) != null)
             sb.append(line);
-        }
         br.close();
         return sb.toString();
     }

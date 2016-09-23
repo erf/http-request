@@ -2,7 +2,6 @@ package com.apptakk.http_request;
 
 import android.app.Activity;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import java.lang.ref.WeakReference;
 
@@ -53,16 +52,12 @@ public class HttpRequestTask extends AsyncTask<Void, Void, HttpResponse> {
 
     private void handleResponse(HttpResponse response) {
 
-        if (handler == null) {
+        if (handler == null)
             return;
-        }
 
-        if (!activityRefSet) {
+        if (!activityRefSet)
             handler.response(response);
-        } else if (activityRef.get() != null && !activityRef.get().isFinishing()) {
+        else if (activityRef.get() != null && !activityRef.get().isFinishing())
             handler.response(response);
-        } else {
-            Log.d("http-request", "activity finished so will not respond");
-        }
     }
 }

@@ -23,5 +23,5 @@ new HttpRequestTask(
 
 # Install
 ```groovy
-compile 'com.apptakk.http_request:http-request:0.1.2'
+compile 'com.apptakk.http_request:http-request:0.2.0'
 ```

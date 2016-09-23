@@ -22,15 +22,14 @@ public class MainActivity extends AppCompatActivity {
         Log.d("http-request", "sending request");
         final String[] text = {""};
 
+        // test handle
         new HttpRequestTask(
                 new HttpRequest("http://httpbin.org/get", HttpRequest.GET),
                 new HttpRequest.Handler() {
                     @Override
                     public void response(HttpResponse response) {
-                        if (response.code == 200) {
-                            text[0] += "HTTP GET -> http://httpbin.org/get\n" + response.body + "\n\n";
-                            textView.setText(text[0]);
-                        }
+                        text[0] += "HTTP GET -> http://httpbin.org/get\n" + response.body + "\n\n";
+                        textView.setText(text[0]);
                     }
                 }).execute();
 
@@ -45,7 +44,5 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }, this).execute();
-
-        // finish();
     }
 }

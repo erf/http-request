@@ -3,7 +3,6 @@ package com.apptakk.http_request;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Map;
 
 public class HttpRequest {
 
@@ -47,7 +46,6 @@ public class HttpRequest {
         try {
             con = (HttpURLConnection) new URL(url).openConnection();
         } catch (IOException e) {
-            //e.printStackTrace();
             return response;
         }
 
@@ -71,13 +69,18 @@ public class HttpRequest {
             }
 
             response.code = con.getResponseCode();
-            response.body = IO.read(con.getInputStream());
+            response.body = valid(response.code) ?
+                    IO.read(con.getInputStream()) :
+                    IO.read(con.getErrorStream());
 
-        } catch (IOException e) {
-            //e.printStackTrace();
+        } catch (IOException ignored) {
         } finally {
             con.disconnect();
         }
         return response;
+    }
+
+    private boolean valid(int code) {
+        return code < 400;
     }
 }
