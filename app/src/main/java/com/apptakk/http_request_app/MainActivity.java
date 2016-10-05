@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         // test handle
         new HttpRequestTask(
-                new HttpRequest("http://httpbin.org/get", HttpRequest.GET),
+                new HttpRequest("http://httpbin.org/get"),
                 new HttpRequest.Handler() {
                     @Override
                     public void response(HttpResponse response) {

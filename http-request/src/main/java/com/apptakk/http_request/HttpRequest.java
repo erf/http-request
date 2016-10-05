@@ -23,6 +23,9 @@ public class HttpRequest {
     private final String json;
     private final String authorization;
 
+    public HttpRequest(String url) {
+        this(url, GET, null, null);
+    }
     public HttpRequest(String url, String method) {
         this(url, method, null, null);
     }
