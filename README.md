@@ -3,7 +3,7 @@ http-request
 
 A minimal opinionated http request library for Android
 
-**Supported Android versions**: Android 3+
+**Supported Android versions**: Android 14+
 
 # Usage
 
@@ -23,5 +23,5 @@ new HttpRequestTask(
 
 # Install
 ```groovy
-compile 'com.apptakk.http_request:http-request:0.2.1'
+compile 'com.apptakk.http_request:http-request:0.3.0'
 ```
