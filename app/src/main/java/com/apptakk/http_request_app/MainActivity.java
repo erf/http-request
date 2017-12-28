@@ -9,6 +9,9 @@ import com.apptakk.http_request.HttpRequest;
 import com.apptakk.http_request.HttpRequestTask;
 import com.apptakk.http_request.HttpResponse;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView textView;
@@ -40,6 +43,22 @@ public class MainActivity extends AppCompatActivity {
                     public void response(HttpResponse response) {
                         if (response.code == 200) {
                             text[0] += "HTTP POST -> http://httpbin.org/post\n" + response.body + "\n\n";
+                            textView.setText(text[0]);
+                        }
+                    }
+                }, this).execute();
+
+
+        Map requestProperties = new HashMap<>();
+        requestProperties.put("Accept-Language", "en-US");
+
+        new HttpRequestTask(
+                new HttpRequest("http://httpbin.org/post", HttpRequest.POST, "{ \"post\": \"some-data-æøå\" }", null, requestProperties),
+                new HttpRequest.Handler() {
+                    @Override
+                    public void response(HttpResponse response) {
+                        if (response.code == 200) {
+                            text[0] += "HTTP POST with header -> http://httpbin.org/post\n" + response.body + "\n\n";
                             textView.setText(text[0]);
                         }
                     }
