@@ -25,20 +25,43 @@ public class HttpRequest {
     private final String authorization;
     private final Map<String, String> requestProperties;
 
+    // ----- GET START --- //
     public HttpRequest(String url) {
-        this(url, GET, null, null);
+
+        this(url, GET, null, null,null);
     }
 
-    public HttpRequest(String url, String method) {
-        this(url, method, null, null);
+    public HttpRequest(String url,String authorization) {
+
+        this(url, GET, null, authorization,null);
     }
 
+    public HttpRequest(String url,  Map<String, String> requestProperties) {
+
+        this(url, GET, null, null,requestProperties);
+    }
+
+    public HttpRequest(String url, String authorization,  Map<String, String> requestProperties) {
+
+        this(url, GET, null, authorization,requestProperties);
+    }
+    // ----- GET END --- //
+
+
+
+
+    // ----- POST,PUT or Other START --- //
     public HttpRequest(String url, String method, String json) {
-        this(url, method, json, null);
+
+        this(url, method, json, null,null);
     }
 
     public HttpRequest(String url, String method, String json, String authorization) {
         this(url, method, json, authorization, null);
+    }
+
+    public HttpRequest(String url, String method, String json, Map<String, String> requestProperties) {
+        this(url, method, json, null, requestProperties);
     }
 
      public HttpRequest(String url, String method, String json, String authorization, Map<String, String> requestProperties) {
@@ -48,6 +71,8 @@ public class HttpRequest {
          this.authorization = authorization;
          this.requestProperties = requestProperties;
      }
+    // ----- POST,PUT or Other END --- //
+
 
      public HttpResponse request()  {
 
